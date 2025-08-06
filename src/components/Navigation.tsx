@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { MessageCircle, Upload, Bot, Moon, Sun, CheckSquare, Calendar } from 'lucide-react';
+import { MessageCircle, Upload, Bot, Moon, Sun, CheckSquare, Calendar, LayoutDashboard, BookOpen, Target, DollarSign } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
 
 export const Navigation: React.FC = () => {
@@ -23,7 +23,19 @@ export const Navigation: React.FC = () => {
           </Link>
 
           {/* Navigation Links */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-1">
+            <Button
+              variant={location.pathname === '/dashboard' ? 'ai' : 'ghost'}
+              asChild
+              className="flex items-center space-x-2"
+              size="sm"
+            >
+              <Link to="/dashboard">
+                <LayoutDashboard className="w-4 h-4" />
+                <span className="hidden lg:inline">Dashboard</span>
+              </Link>
+            </Button>
+
             <Button
               variant={location.pathname === '/' ? 'ai' : 'ghost'}
               asChild
@@ -32,7 +44,7 @@ export const Navigation: React.FC = () => {
             >
               <Link to="/">
                 <MessageCircle className="w-4 h-4" />
-                <span className="hidden sm:inline">Chat</span>
+                <span className="hidden lg:inline">Chat</span>
               </Link>
             </Button>
             
@@ -44,7 +56,7 @@ export const Navigation: React.FC = () => {
             >
               <Link to="/todo">
                 <CheckSquare className="w-4 h-4" />
-                <span className="hidden sm:inline">Todo</span>
+                <span className="hidden md:inline">Todo</span>
               </Link>
             </Button>
 
@@ -56,7 +68,43 @@ export const Navigation: React.FC = () => {
             >
               <Link to="/calendar">
                 <Calendar className="w-4 h-4" />
-                <span className="hidden sm:inline">Calendar</span>
+                <span className="hidden md:inline">Calendar</span>
+              </Link>
+            </Button>
+
+            <Button
+              variant={location.pathname === '/notes' ? 'ai' : 'ghost'}
+              asChild
+              className="flex items-center space-x-2"
+              size="sm"
+            >
+              <Link to="/notes">
+                <BookOpen className="w-4 h-4" />
+                <span className="hidden lg:inline">Notes</span>
+              </Link>
+            </Button>
+
+            <Button
+              variant={location.pathname === '/goals' ? 'ai' : 'ghost'}
+              asChild
+              className="flex items-center space-x-2"
+              size="sm"
+            >
+              <Link to="/goals">
+                <Target className="w-4 h-4" />
+                <span className="hidden lg:inline">Goals</span>
+              </Link>
+            </Button>
+
+            <Button
+              variant={location.pathname === '/finance' ? 'ai' : 'ghost'}
+              asChild
+              className="flex items-center space-x-2"
+              size="sm"
+            >
+              <Link to="/finance">
+                <DollarSign className="w-4 h-4" />
+                <span className="hidden lg:inline">Finance</span>
               </Link>
             </Button>
             
@@ -68,7 +116,7 @@ export const Navigation: React.FC = () => {
             >
               <Link to="/upload">
                 <Upload className="w-4 h-4" />
-                <span className="hidden sm:inline">Upload</span>
+                <span className="hidden lg:inline">Upload</span>
               </Link>
             </Button>
 

@@ -6,6 +6,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Chat } from "./pages/Chat";
 import { Todo } from "./pages/Todo";
 import { Calendar } from "./pages/Calendar";
+import { Dashboard } from "./pages/Dashboard";
+import { Notes } from "./pages/Notes";
+import { Goals } from "./pages/Goals";
+import { Finance } from "./pages/Finance";
 import { UploadPage } from "./pages/Upload";
 import NotFound from "./pages/NotFound";
 
@@ -19,8 +23,12 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Chat />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/todo" element={<Todo />} />
           <Route path="/calendar" element={<Calendar />} />
+          <Route path="/notes" element={<Notes />} />
+          <Route path="/goals" element={<Goals />} />
+          <Route path="/finance" element={<Finance />} />
           <Route path="/upload" element={<UploadPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
