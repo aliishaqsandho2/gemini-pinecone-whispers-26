@@ -35,4 +35,45 @@ CREATE INDEX IF NOT EXISTS idx_chat_messages_created_at ON chat_messages(created
 -- ALTER TABLE documents ENABLE ROW LEVEL SECURITY;
 -- ALTER TABLE chat_messages ENABLE ROW LEVEL SECURITY;
 
+-- Create todos table
+CREATE TABLE IF NOT EXISTS todos (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    title TEXT NOT NULL,
+    description TEXT,
+    completed BOOLEAN DEFAULT FALSE,
+    priority TEXT DEFAULT 'medium' CHECK (priority IN ('low', 'medium', 'high')),
+    due_date TIMESTAMP WITH TIME ZONE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL
+);
+
+-- Create events table
+CREATE TABLE IF NOT EXISTS events (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    title TEXT NOT NULL,
+    description TEXT,
+    start_date TIMESTAMP WITH TIME ZONE NOT NULL,
+    end_date TIMESTAMP WITH TIME ZONE,
+    location TEXT,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL
+);
+
+-- Create indexes for todos and events
+CREATE INDEX IF NOT EXISTS todos_completed_idx ON todos(completed);
+CREATE INDEX IF NOT EXISTS todos_created_at_idx ON todos(created_at);
+CREATE INDEX IF NOT EXISTS events_start_date_idx ON events(start_date);
+
+-- Enable Row Level Security for new tables
+ALTER TABLE todos ENABLE ROW LEVEL SECURITY;
+ALTER TABLE events ENABLE ROW LEVEL SECURITY;
+
+-- Create policies for todos (allow all operations for now)
+CREATE POLICY "Allow all operations on todos" ON todos
+    FOR ALL USING (true);
+
+-- Create policies for events (allow all operations for now)  
+CREATE POLICY "Allow all operations on events" ON events
+    FOR ALL USING (true);
+
 -- Note: You'll need to run this SQL in your Supabase dashboard under SQL Editor

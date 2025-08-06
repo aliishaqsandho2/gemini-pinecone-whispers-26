@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { MessageCircle, Upload, Bot, Moon, Sun } from 'lucide-react';
+import { MessageCircle, Upload, Bot, Moon, Sun, CheckSquare, Calendar } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
 
 export const Navigation: React.FC = () => {
@@ -23,15 +23,40 @@ export const Navigation: React.FC = () => {
           </Link>
 
           {/* Navigation Links */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2">
             <Button
               variant={location.pathname === '/' ? 'ai' : 'ghost'}
               asChild
               className="flex items-center space-x-2"
+              size="sm"
             >
               <Link to="/">
                 <MessageCircle className="w-4 h-4" />
-                <span>Chat</span>
+                <span className="hidden sm:inline">Chat</span>
+              </Link>
+            </Button>
+            
+            <Button
+              variant={location.pathname === '/todo' ? 'ai' : 'ghost'}
+              asChild
+              className="flex items-center space-x-2"
+              size="sm"
+            >
+              <Link to="/todo">
+                <CheckSquare className="w-4 h-4" />
+                <span className="hidden sm:inline">Todo</span>
+              </Link>
+            </Button>
+
+            <Button
+              variant={location.pathname === '/calendar' ? 'ai' : 'ghost'}
+              asChild
+              className="flex items-center space-x-2"
+              size="sm"
+            >
+              <Link to="/calendar">
+                <Calendar className="w-4 h-4" />
+                <span className="hidden sm:inline">Calendar</span>
               </Link>
             </Button>
             
@@ -39,10 +64,11 @@ export const Navigation: React.FC = () => {
               variant={location.pathname === '/upload' ? 'ai' : 'ghost'}
               asChild
               className="flex items-center space-x-2"
+              size="sm"
             >
               <Link to="/upload">
                 <Upload className="w-4 h-4" />
-                <span>Upload</span>
+                <span className="hidden sm:inline">Upload</span>
               </Link>
             </Button>
 

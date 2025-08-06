@@ -4,6 +4,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Chat } from "./pages/Chat";
+import { Todo } from "./pages/Todo";
+import { Calendar } from "./pages/Calendar";
 import { UploadPage } from "./pages/Upload";
 import NotFound from "./pages/NotFound";
 
@@ -17,6 +19,8 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Chat />} />
+          <Route path="/todo" element={<Todo />} />
+          <Route path="/calendar" element={<Calendar />} />
           <Route path="/upload" element={<UploadPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
